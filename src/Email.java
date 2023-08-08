@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class Email {
     private  String firstName;
     private String lastName;
+    private String email;
     private String password;
     private String department;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 500;
     private int defaultPasswordLength = 10;
     private String alternateEmail;
     private String companySuffix = "aeycompany.com";
@@ -21,15 +22,15 @@ public class Email {
 
         //Call a method that returns random password
         this.password = randomPassword(defaultPasswordLength);
-        System.out.println("Your password is: " + this.password);
+
 
         // Combine elements to generate email
-      String  email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
-        System.out.println("Your email is: " + email);
+      email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
+
     }
     // Ask for the department
     private String setDepartment() {
-        System.out.print("DEPARTMENT CODES\n1 for Sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code: ");
+        System.out.print("New worker: " +firstName + "\nDEPARTMENT CODES: \n1 for Sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code: ");
         Scanner in = new Scanner(System.in);
         int depChoice = in.nextInt();
         if (depChoice == 1) {return "sales"; }
@@ -49,6 +50,24 @@ public class Email {
         return new String(password);
     }
     // Set the mailbox capacity
+    public void setMailboxCapacity(int capacity) {
+        this.mailboxCapacity = capacity;
+    }
     // Set the alternate email
+    public void setAlternateEmail(String altEmail) {
+        this.alternateEmail = altEmail;
+    }
     // Change the password
+    public void chengePassword(String password) {
+        this.password = password;
+    }
+    public int getMailboxCapacity() { return mailboxCapacity; }
+    public String getAlternateEmail() {return alternateEmail; }
+    public String getPassword() {return password; } //30:35
+    public String showInfo() {
+        return "DISPLAY NAME: " + firstName + " " + lastName +
+                "\nCOMPANY EMAIL: " + email +
+                "\nMAILBOX CAPACITY: " + mailboxCapacity + " mb";
+
+    }
 }
